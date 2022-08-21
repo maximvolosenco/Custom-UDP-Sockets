@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Server");
+﻿using UDP.Server;
+
+UDPListener sender = new UDPListener();
+
+sender.StartListener();
