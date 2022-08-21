@@ -6,9 +6,9 @@ using UDP.Server.Properties;
 
 namespace UDP.Server
 {
-    public class UDPListener
+    public class UDPClient
     {
-        public void StartListener()
+        public void Start()
         {
             UdpClient listener = new UdpClient(Config.Port);
             IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, Config.Port);
@@ -20,7 +20,7 @@ namespace UDP.Server
                     Console.WriteLine("Waiting for broadcast");
                     byte[] bytes = listener.Receive(ref groupEP);
 
-                    Console.WriteLine($"Received broadcast from {groupEP} :");
+                    Console.WriteLine($"Received broadcast from :");
                     Console.WriteLine($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
                 }
             //}

@@ -5,9 +5,9 @@ using UDP.Client.Properties;
 
 namespace UDP.Client
 {
-    public class UDPSender
+    public class UDPClient
     {
-        public void StartSender()
+        public void Start()
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
