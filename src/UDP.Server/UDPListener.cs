@@ -2,17 +2,16 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using UDP.Server.Properties;
 
 namespace UDP.Server
 {
     public class UDPListener
     {
-        private const int listenPort = 11000;
-
         public void StartListener()
         {
-            UdpClient listener = new UdpClient(listenPort);
-            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
+            UdpClient listener = new UdpClient(Config.Port);
+            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, Config.Port);
 
             //try
             //{
