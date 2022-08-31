@@ -43,10 +43,20 @@ namespace UDP.Client
         private void ReceiveMessage()
         {
             byte[] bytes = _udp.Receive(ref _ipEndpoint);
-
+            
             string messageFromServer = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
-            Console.WriteLine(messageFromServer);
+            
+            if (string.IsNullOrEmpty(messageFromServer))
+            {
+                Console.WriteLine("Get NULL, alert!!!!!");
+            }
+            else
+            {
+                Console.WriteLine(int.Parse(messageFromServer));
+            }
+
         }
+        
     }
    
 }

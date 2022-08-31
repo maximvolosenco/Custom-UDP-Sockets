@@ -32,7 +32,7 @@ namespace UDP.Server
         {
             byte[] bytes = _udp.Receive(ref _ipEndpoint);
             string messageFromClient = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
-            Console.WriteLine($" {messageFromClient}");
+            //Console.WriteLine($" {messageFromClient}");
 
             return messageFromClient;
         }
@@ -41,8 +41,9 @@ namespace UDP.Server
         {
             if (!string.IsNullOrEmpty(message))
             {
-                string _messageToClient = "200 ok";
+                string _messageToClient = "";
                 byte[] bufferToSend = Encoding.ASCII.GetBytes(_messageToClient);
+                
 
                 _udp.Send(bufferToSend, bufferToSend.Length, Config.IPAdress, Config.ClientPort);
             }
