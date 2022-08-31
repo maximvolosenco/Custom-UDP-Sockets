@@ -6,10 +6,11 @@ using UDP.Server.Properties;
 
 namespace UDP.Server
 {
-    public class UDPClient
+    public class UDPManager
     {
         public void Start()
         {
+            
             UdpClient listener = new UdpClient(Config.Port);
             IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, Config.Port);
 

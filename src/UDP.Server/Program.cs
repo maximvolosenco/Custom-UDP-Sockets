@@ -1,5 +1,5 @@
 ﻿using UDP.Server;
 
-UDPClient sender = new UDPClient();
+UDPManager client = new UDPManager();
 
-sender.Start();
+client.Start();
