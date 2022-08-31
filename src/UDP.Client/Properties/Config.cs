@@ -3,8 +3,10 @@ namespace UDP.Client.Properties
 {
     public static class Config
     {
-        public const int Port = 11000;
+        public const int ServerPort = 11000;
 
-        public const string IPAdress = "192.168.100.38";
+        public const int ClientPort = 11001;
+
+        public const string IPAdress = "192.168.18.4";
     }
 }

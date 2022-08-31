@@ -7,29 +7,61 @@ namespace UDP.Client
 {
     public class UDPManager
     {
+        UdpClient _udp;
+        IPEndPoint _ipEndpoint;
+        Socket _socket;
+        IPAddress _broadcast;
+        public UDPManager()
+        {
+            _udp = new UdpClient(Config.ClientPort);
+            _ipEndpoint = new IPEndPoint(IPAddress.Any, Config.ClientPort);
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            _broadcast = IPAddress.Parse(Config.IPAdress);
+        }
         
         public void Start()
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
-            IPAddress broadcast = IPAddress.Parse(Config.IPAdress);
 
             Console.WriteLine("Enter message: ");
-            string message = Console.ReadLine();
+            string? message = Console.ReadLine();
             while (message != string.Empty)
             {
-                byte[] sendBuf = Encoding.ASCII.GetBytes(message);
-                IPEndPoint ep = new IPEndPoint(broadcast, Config.Port);
+                SendMessage(message);
 
-                socket.SendTo(sendBuf, ep);
+                ReceiveMessage();
 
-                Console.WriteLine("Message sent");
+                //byte[] bufferToSend = Encoding.ASCII.GetBytes(message);
+                //IPEndPoint ipEndpoint = new IPEndPoint(_broadcast, Config.Port);
 
+                //_socket.SendTo(bufferToSend, ipEndpoint);
+
+                //Console.WriteLine("Message sent");
+
+                //message = Console.ReadLine();
                 message = Console.ReadLine();
             }
             Console.ReadLine();
         }
 
+        private void SendMessage(string? message)
+        {
+            byte[] bufferToSend = Encoding.ASCII.GetBytes(message);
+            IPEndPoint ipEndpoint = new IPEndPoint(_broadcast, Config.ServerPort);
+
+            _socket.SendTo(bufferToSend, ipEndpoint);
+
+            //Console.WriteLine("Message sent");
+
+            //return Console.ReadLine();
+        }
+
+        private void ReceiveMessage()
+        {
+            byte[] bytes = _udp.Receive(ref _ipEndpoint);
+
+            string messageFromServer = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
+            Console.WriteLine(messageFromServer);
+        }
     }
    
 }
