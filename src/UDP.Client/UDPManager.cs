@@ -29,15 +29,6 @@ namespace UDP.Client
                 SendMessage(message);
 
                 ReceiveMessage();
-
-                //byte[] bufferToSend = Encoding.ASCII.GetBytes(message);
-                //IPEndPoint ipEndpoint = new IPEndPoint(_broadcast, Config.Port);
-
-                //_socket.SendTo(bufferToSend, ipEndpoint);
-
-                //Console.WriteLine("Message sent");
-
-                //message = Console.ReadLine();
                 message = Console.ReadLine();
             }
             Console.ReadLine();
@@ -49,10 +40,6 @@ namespace UDP.Client
             IPEndPoint ipEndpoint = new IPEndPoint(_broadcast, Config.ServerPort);
 
             _socket.SendTo(bufferToSend, ipEndpoint);
-
-            //Console.WriteLine("Message sent");
-
-            //return Console.ReadLine();
         }
 
         private void ReceiveMessage()

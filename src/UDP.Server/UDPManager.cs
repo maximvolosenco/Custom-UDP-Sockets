@@ -21,27 +21,13 @@ namespace UDP.Server
         }
         public void Start()
         {
-
-            //try
-            //{
             Console.WriteLine("Waiting for broadcast");
             while (true)
             {
-                //byte[] bytes = _udp.Receive(ref _ipEndpoint);
                 string message = ReceiveMessage();
                 SendMessage(message);
-                //Console.WriteLine($"Received broadcast from :");
-                //Console.WriteLine($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
             }
-            //}
-            //catch (SocketException e)
-            //{
-            //    Console.WriteLine(e);
-            //}
-            //finally
-            //{
-            //    listener.Close();
-            //}
+
         }
         private string ReceiveMessage()
         {
@@ -54,10 +40,6 @@ namespace UDP.Server
 
         private void SendMessage(string message)
         {
-            //Console.WriteLine($"Received broadcast from :");
-            //string messageFromClient = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
-            //Console.WriteLine($" {messageFromClient}");
-
             if (!string.IsNullOrEmpty(message))
             {
                 string _messageToClient = "200 ok";
